@@ -1,0 +1,58 @@
+honor-click-cooldown: 1
+# ===== 荣誉衰减 =====
+honor-decay:
+  # 多久检测一次（分钟）
+  check-period: 30
+  # 每次扣多少点
+  deduct-value: 1
+  # 距离上次变化超过多少 **分钟** 开始衰减
+  idle-threshold: 1440
+  # 低于门槛后给多少分钟缓冲
+  grace-minutes: 60
+  # 是否开启衰减系统
+  enabled: true
+
+# ===== 每日荣誉值限制系统 =====
+daily-honor-system:
+  # 每日最多获得的荣誉值
+  daily_honor_limit: 10
+  # 暂存荣誉值的最大数量
+  stored_honor_limit: 50
+  # 暂存荣誉值的冷却时间（小时）- 超过冷却时间后暂存的荣誉值会返还给玩家
+  honor_cool_time: 24
+  # 返还时的每日限制（暂存的荣誉值返还时也受此限制）
+  daily_return_limit: 10
+  # 是否开启每日荣誉值限制系统
+  enabled: true  # 修改为true以启用系统
+
+# ===== 公共房屋配置 =====
+public-hotel-blocks:
+  # 允许在公共房屋中放置/破坏的方块列表
+  # 支持所有Minecraft方块ID，如: STONE, OAK_PLANKS, CHEST, FURNACE 等
+  allowed-blocks:
+    - "CHEST"
+    - "FURNACE" 
+    - "OAK_PLANKS"
+    - "STONE"
+    - "GRASS_BLOCK"
+    - "DIRT"
+    - "COBBLESTONE"
+    - "CRAFTING_TABLE"
+
+# ===== 种族语音系统配置 =====
+race-voice:
+  # 语音服务器端口
+  port: 8888
+  # 可用的种族列表
+  available-races:
+    - "human"
+    - "elf"
+    - "dwarf"
+    - "orc"
+    - "undead"
+    - "demon"
+
+# ===== 日志输出配置 =====
+logging:
+  # 是否输出伤害计算日志（包含战斗属性和MythicMobs集成日志）
+  damage-log-enabled: false

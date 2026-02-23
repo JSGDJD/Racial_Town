@@ -1,0 +1,56 @@
+# ===== 远古龙子种族 =====
+race-name: "wyrm"
+display-name: "远古龙"
+description: "存活了数千年的远古龙，拥有强大的龙族传承"
+max-level: 100
+evolution:
+  evolution-level: 65
+  targets:
+    - "ancient_wyrm"
+    - "elder_dragon"
+    - "primeval_wyrm"
+    - "celestial_dragon"
+attributes:
+  base:
+    health: 22.0
+    physical_damage: 10.0
+    magic_damage: 8.0
+    physical_defense: 16.0
+    magic_defense: 12.0
+    crit_rate: 7.0
+    crit_damage: 44.0
+    movement_speed: 0.02
+    attack_speed: 0.14
+  per-level:
+    health: 3.5
+    physical_damage: 0.8
+    magic_damage: 0.7
+  bonus:
+    health_percent: 55.0
+    wyrm_power_percent: 62.0
+    ancient_dragon_percent: 58.0
+    physical_defense_percent: 50.0
+    dragon_aura_percent: 52.0
+abilities:
+  level-1:
+    - name: "远古龙之体"
+      description: "远古龙力量+62%，生命值+55%"
+      effect: "wyrm_body"
+      value: 0.62
+  level-10:
+    - name: "远古龙息"
+      description: "释放古老的龙息"
+      effect: "ancient_dragon_breath"
+      value: 0.0
+  level-20:
+    - name: "龙鳞护甲"
+      description: "获得强大的龙鳞护甲"
+      effect: "dragon_scale_armor"
+      value: 0.0
+  level-50:
+    - name: "远古龙觉醒"
+      description: "释放远古龙的终极力量"
+      effect: "wyrm_awakening"
+      value: 0.0
+voice-channel-color: "#8e44ad"
+icon: "DRAGON_HEAD"

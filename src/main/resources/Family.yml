@@ -1,0 +1,305 @@
+# ===== 家族系统配置 =====
+
+# 是否启用家族系统
+enabled: true
+
+# ===== 创建条件配置 =====
+create-requirements:
+  # 必须拥有房屋
+  require-house: true
+  # 房屋最小面积（方块数）
+  house-min-area: 100
+  # 种族等级要求（读取 PAPI %hr_race_level%）
+  race-level: 10
+  # 荣誉值要求（读取 PAPI %hr_honor%）
+  honor: 500
+  # 游戏币要求（Vault 经济）
+  money: 10000
+  # 物品消耗（可空）
+  items:
+    - DIAMOND_BLOCK:5
+    - EMERALD:32
+  # 经验等级要求
+  exp-level: 5
+  # 创建冷却（小时）
+  cooldown: 24
+
+# ===== 职位配置 =====
+positions:
+  # 族长
+  leader:
+    name: "族长"
+    max-count: 1
+    permissions:
+      disband: true
+      upgrade: true
+      invite: true
+      kick: true
+      change-position: true
+      access-warehouse: true
+      leave: false
+  # 副族长
+  deputy:
+    name: "副族长"
+    max-count: 2
+    permissions:
+      disband: false
+      upgrade: true
+      invite: true
+      kick: true
+      change-position: true
+      access-warehouse: true
+      leave: true
+  # 长老
+  elder:
+    name: "长老"
+    max-count: 3
+    permissions:
+      disband: false
+      upgrade: false
+      invite: true
+      kick: true
+      change-position: false
+      access-warehouse: true
+      leave: true
+  # 成员
+  member:
+    name: "成员"
+    max-count: -1  # -1 表示无限制
+    permissions:
+      disband: false
+      upgrade: false
+      invite: false
+      kick: false
+      change-position: false
+      access-warehouse: false
+      leave: true
+
+# ===== 家族升级表 =====
+upgrade-table:
+  max-level: 10
+  levels:
+    1:
+      requirements:
+        money: 0
+        honor: 0
+        activity: 0
+        items: []
+      member-limit: 10
+      positions:
+        deputy: 1
+        elder: 2
+      attributes:
+        attack-damage: 0.5
+        max-health: 2.0
+        defense: 0.3
+      experience-multipliers:
+        monster: 1.0
+        mining: 1.0
+        fishing: 1.0
+    2:
+      requirements:
+        money: 50000
+        honor: 2000
+        activity: 1000
+        items:
+          - GOLD_BLOCK:10
+      member-limit: 15
+      positions:
+        deputy: 2
+        elder: 3
+      attributes:
+        attack-damage: 1.0
+        max-health: 4.0
+        defense: 0.6
+      experience-multipliers:
+        monster: 1.1
+        mining: 1.1
+        fishing: 1.1
+    3:
+      requirements:
+        money: 100000
+        honor: 5000
+        activity: 2500
+        items:
+          - DIAMOND_BLOCK:5
+          - GOLD_BLOCK:20
+      member-limit: 20
+      positions:
+        deputy: 2
+        elder: 4
+      attributes:
+        attack-damage: 1.5
+        max-health: 6.0
+        defense: 1.0
+      experience-multipliers:
+        monster: 1.2
+        mining: 1.2
+        fishing: 1.2
+    # 可以继续添加更多等级配置...
+
+# ===== GUI配置 =====
+gui:
+  title: "家族管理"
+  size: 54  # 必须是9的倍数
+  buttons:
+    # 创建家族按钮
+    create:
+      slot: 11
+      material: DIAMOND_BLOCK
+      name: "&a创建家族"
+      lore:
+        - "&7点击创建一个属于你的家族"
+        - "&7需要满足以下条件："
+      visible-to: "no-family"
+    # 家族信息按钮
+    info:
+      slot: 13
+      material: BOOK
+      name: "&6家族信息"
+      lore:
+        - "&7点击查看家族成员列表"
+        - "&7右键打开家族仓库"
+      visible-to: "all"
+    # 升级家族按钮
+    upgrade:
+      slot: 15
+      material: NETHER_STAR
+      name: "&b升级家族"
+      lore:
+        - "&7升级家族以获得更多福利"
+      visible-to: "leader,deputy"
+    # 邀请玩家按钮
+    invite:
+      slot: 20
+      material: COMPASS
+      name: "&9邀请玩家"
+      lore:
+        - "&7邀请其他玩家加入家族"
+      visible-to: "leader,deputy,elder"
+    # 职位管理按钮
+    manage-positions:
+      slot: 21
+      material: NAME_TAG
+      name: "&c职位管理"
+      lore:
+        - "&7管理家族成员职位"
+      visible-to: "leader"
+    # 全员传送按钮
+    teleport-all:
+      slot: 22
+      material: ENDER_PEARL
+      name: "&d全员传送"
+      lore:
+        - "&7将在线成员传送到你身边"
+      visible-to: "leader,deputy"
+    # 退出/解散家族按钮
+    leave-disband:
+      slot: 26
+      material: REDSTONE_BLOCK
+      name: "&c退出家族"
+      lore:
+        - "&7离开当前家族"
+        - "&7（族长将解散家族）"
+      visible-to: "all"
+
+# ===== 活跃值配置 =====
+activity:
+  # 各种行为的活跃值获取
+  actions:
+    # 首次上线
+    first-login:
+      amount: 1.0
+      daily-limit: 1
+    # 击杀怪物
+    kill-monster:
+      amount: 0.1
+      daily-limit: 30
+    # 挖矿石
+    mine-ore:
+      amount: 0.05
+      daily-limit: 20
+    # 捐献游戏币
+    donate-money:
+      amount-per-coin: 1.0
+      daily-limit: -1  # -1 表示无限制
+  # 周衰减率（保留百分比）
+  weekly-decay-rate: 0.9
+
+# ===== 家族仓库配置 =====
+warehouse:
+  # 仓库行数（必须是6的倍数）
+  rows: 6
+  # 黑名单物品（不可存放）
+  blacklist:
+    - "BEDROCK"
+    - "COMMAND_BLOCK"
+    - "BARRIER"
+
+# ===== 家族Buff配置 =====
+buffs:
+  # 经验加成Buff
+  experience-boost:
+    name: "&e经验加成"
+    description: "增加所有经验获取"
+    effect: "EXPERIENCE_BOOST"
+    amplifier: 1
+    duration: 3600  # 秒
+    cost:
+      money: 5000
+      honor: 200
+      activity: 100
+      items:
+        - EMERALD:16
+    cooldown: 86400  # 秒
+  # 伤害加成Buff
+  damage-boost:
+    name: "&c伤害加成"
+    description: "增加攻击伤害"
+    effect: "STRENGTH"
+    amplifier: 2
+    duration: 1800  # 秒
+    cost:
+      money: 10000
+      honor: 500
+      activity: 250
+      items:
+        - DIAMOND:8
+    cooldown: 172800  # 秒
+  # 防御加成Buff
+  defense-boost:
+    name: "&a防御加成"
+    description: "增加防御力"
+    effect: "RESISTANCE"
+    amplifier: 2
+    duration: 1800  # 秒
+    cost:
+      money: 8000
+      honor: 400
+      activity: 200
+      items:
+        - IRON_INGOT:32
+    cooldown: 172800  # 秒
+
+# ===== 管理配置 =====
+admin:
+  # 是否允许管理员忽略冷却
+  bypass-cooldown: true
+  # 是否允许管理员忽略创建条件
+  bypass-requirements: true
+
+# ===== 数据库配置 =====
+database:
+  # 数据库类型：sqlite（默认，本地文件）或 mysql
+  type: sqlite
+  # MySQL配置（仅当type为mysql时生效）
+  mysql:
+    host: localhost
+    port: 3306
+    database: hotelroom
+    username: root
+    password: password
+    # 是否使用SSL连接
+    useSSL: false
+    # 连接池大小
+    pool-size: 10

@@ -1,0 +1,87 @@
+# ===== 商人种族配置 =====
+
+# 种族名称
+race-name: "merchant"
+
+# 种族显示名称
+display-name: "商人"
+
+# 种族描述
+description: "精明的贸易专家，拥有更好的交易价格和经济收益"
+
+# 最高等级
+max-level: 100
+
+# 进化配置
+evolution:
+  # 进化所需等级
+  evolution-level: 40
+  # 可进化的目标种族列表
+  targets:
+    - "trader"      # 贸易商
+    - "banker"      # 银行家
+
+# 种族属性加成（基于新属性系统）
+# 注意：这些属性会累加到默认属性上
+attributes:
+  # 基础属性（1级时的加成，会累加到默认值）
+  base:
+    health: 0.0              # 生命值加成: 基础生命值为30
+    physical_damage: 0.0      # 物理伤害加成: 提高物理攻击伤害
+    magic_damage: 2.0         # 魔法伤害加成: 提高魔法攻击伤害
+    physical_defense: 0.0     # 物理防御加成: 减少受到的物理伤害
+    magic_defense: 2.0        # 魔法防御加成: 减少受到的魔法伤害
+    crit_rate: 0.5            # 暴击率加成: 增加暴击发生的概率
+    crit_damage: 1.0        # 暴击伤害加成: 增加暴击时的额外伤害
+    movement_speed: 0.01      # 移动速度加成: 增加基础移动速度
+    attack_speed: 0.1         # 攻击速度加成: 增加基础攻击速度
+    economy_bonus: 15.0       # 经济加成: 提高交易收益
+  
+  # 每级成长
+  per-level:
+    health: 0.8               # 每升一级生命值成长
+    magic_damage: 0.4         # 每升一级魔法伤害成长
+    magic_defense: 0.3        # 每升一级魔法防御成长
+    crit_rate: 0.05           # 每升一级暴击率成长
+    economy_bonus: 1.0        # 每升一级经济加成
+  
+  # 特殊加成（百分比或固定值）
+  bonus:
+    # magic_damage_percent: 10.0  # 魔法伤害百分比加成（已注释）
+    # economy_bonus_percent: 20.0 # 经济收益百分比加成（已注释）
+
+# 种族技能
+abilities:
+  # 1级技能
+  level-1:
+    - name: "讨价还价"
+      description: "购买价格-10%，出售价格+10%"
+      effect: "trade_bonus"
+      value: 0.10
+  
+  # 10级技能
+  level-10:
+    - name: "市场洞察"
+      description: "能够看到物品的真实价值"
+      effect: "market_insight"
+      value: 0.00
+  
+  # 20级技能
+  level-20:
+    - name: "财富积累"
+      description: "银行利息+25%"
+      effect: "interest_boost"
+      value: 0.25
+  
+  # 50级技能
+  level-50:
+    - name: "商业帝国"
+      description: "所有交易收益+50%，获得特殊商人NPC跟随"
+      effect: "business_empire"
+      value: 0.50
+
+# 种族语音频道颜色（用于UI显示）
+voice-channel-color: "#f1c40f"
+
+# 种族图标（使用Minecraft物品ID）
+icon: "EMERALD"

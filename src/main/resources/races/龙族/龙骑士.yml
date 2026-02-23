@@ -1,0 +1,56 @@
+# ===== 龙骑士子种族 =====
+race-name: "dragon_knight"
+display-name: "龙骑士"
+description: "与龙签订契约的骑士，拥有强大的龙之力"
+max-level: 100
+evolution:
+  evolution-level: 65
+  targets:
+    - "dragon_lord_knight"
+    - "wyrm_knight"
+    - "dragon_master_knight"
+    - "ancient_dragon_knight"
+attributes:
+  base:
+    health: 20.0
+    physical_damage: 12.0
+    magic_damage: 4.0
+    physical_defense: 14.0
+    magic_defense: 8.0
+    crit_rate: 8.0
+    crit_damage: 42.0
+    movement_speed: 0.04
+    attack_speed: 0.18
+  per-level:
+    health: 3.2
+    physical_damage: 1.0
+    physical_defense: 0.9
+  bonus:
+    physical_damage_percent: 48.0
+    dragon_knight_power_percent: 55.0
+    dragon_bond_percent: 52.0
+    physical_defense_percent: 40.0
+    dragon_aura_percent: 45.0
+abilities:
+  level-1:
+    - name: "龙骑士之体"
+      description: "龙骑士力量+55%，物理伤害+48%"
+      effect: "dragon_knight_body"
+      value: 0.55
+  level-10:
+    - name: "龙骑士冲击"
+      description: "骑龙发起冲锋"
+      effect: "dragon_knight_charge"
+      value: 0.0
+  level-20:
+    - name: "龙骑士光环"
+      description: "提升周围友军的龙之力"
+      effect: "dragon_knight_aura"
+      value: 0.0
+  level-50:
+    - name: "龙骑士觉醒"
+      description: "释放龙骑士的终极力量"
+      effect: "dragon_knight_awakening"
+      value: 0.0
+voice-channel-color: "#e74c3c"
+icon: "DIAMOND_CHESTPLATE"

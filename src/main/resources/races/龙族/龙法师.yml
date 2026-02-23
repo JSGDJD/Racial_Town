@@ -1,0 +1,56 @@
+# ===== 龙法弟子种族 =====
+race-name: "dragon_mage"
+display-name: "龙法师"
+description: "精通龙语魔法的法师，能够使用强大的龙息魔法"
+max-level: 100
+evolution:
+  evolution-level: 65
+  targets:
+    - "dragon_archmage"
+    - "wyrm_sorcerer"
+    - "dragon_spell_master"
+    - "ancient_dragon_mage"
+attributes:
+  base:
+    health: 14.0
+    physical_damage: 3.0
+    magic_damage: 16.0
+    physical_defense: 6.0
+    magic_defense: 14.0
+    crit_rate: 10.0
+    crit_damage: 48.0
+    movement_speed: 0.04
+    attack_speed: 0.16
+  per-level:
+    health: 2.2
+    magic_damage: 1.2
+    magic_defense: 0.9
+  bonus:
+    magic_damage_percent: 52.0
+    dragon_magic_percent: 58.0
+    dragon_breath_magic_percent: 55.0
+    spell_power_percent: 45.0
+    mana_regen_percent: 35.0
+abilities:
+  level-1:
+    - name: "龙法师之体"
+      description: "龙语魔法+58%，魔法伤害+52%"
+      effect: "dragon_mage_body"
+      value: 0.58
+  level-10:
+    - name: "龙息魔法"
+      description: "释放龙息般的魔法"
+      effect: "dragon_breath_magic"
+      value: 0.0
+  level-20:
+    - name: "龙语咒语"
+      description: "吟唱龙语增强魔法"
+      effect: "dragon_spells"
+      value: 0.0
+  level-50:
+    - name: "龙法师爆发"
+      description: "释放龙法师的终极魔法"
+      effect: "dragon_mage_burst"
+      value: 0.0
+voice-channel-color: "#9b59b6"
+icon: "ENCHANTED_BOOK"

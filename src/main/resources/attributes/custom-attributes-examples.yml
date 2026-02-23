@@ -1,0 +1,378 @@
+# ===== 自定义属性示例配置 =====
+# 这个文件包含了常用的自定义属性示例
+# 你可以将需要的属性复制到 attributes.yml 的 custom-attributes 部分启用
+
+# 使用方法：
+# 1. 选择你需要的属性配置
+# 2. 复制到 attributes.yml 的 custom-attributes: 部分
+# 3. 使用 /attr reload 重载配置
+# 4. 使用 /attr item add <属性名> <数值> 给物品添加属性
+
+# ========== 防御类属性 ==========
+
+# 真实护甲（固定减伤）
+armor_flat:
+  display-name: "§7⛨ 护甲"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 1000.0
+  type: defensive
+  trigger: on_defend
+  # 公式：每点护甲减少1点伤害
+  formula: "max(1, damage - {armor_flat})"
+  description: "每点护甲减少1点受到的伤害"
+
+# 伤害减免（百分比）
+damage_reduction:
+  display-name: "§8🛡 伤害减免"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 75.0
+  type: defensive
+  trigger: on_defend
+  # 公式：百分比减伤
+  formula: "damage * (100 - {damage_reduction}) / 100"
+  description: "减少受到的所有伤害的百分比"
+
+# 韧性（减少暴击伤害）
+tenacity:
+  display-name: "§7◈ 韧性"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: defensive
+  trigger: passive
+  description: "降低受到的暴击伤害"
+
+# ========== 暴击类属性 ==========
+
+# 暴击率提升
+crit_rate_bonus:
+  display-name: "§e☄ 暴击率"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: offensive
+  trigger: passive
+  description: "提升暴击触发的概率"
+
+# 暴击伤害提升
+crit_damage_bonus:
+  display-name: "§6☄ 暴击伤害"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 500.0
+  type: offensive
+  trigger: passive
+  description: "提升暴击时的伤害倍率"
+
+# 必杀一击（低血量敌人提升暴击率）
+execute_chance:
+  display-name: "§c💀 斩杀"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: offensive
+  trigger: on_attack
+  # 目标血量低于30%时，暴击率提升
+  chance: "{target_health} < {target_max_health} * 0.3 ? {execute_chance} : 0"
+  formula: "damage * 2.0"
+  effect-type: damage
+  show-message: true
+  message: "§4§l💀 斩杀！§r §c额外伤害"
+  description: "对生命值低于30%的目标提升暴击率"
+
+# ========== 魔法类属性 ==========
+
+# 魔法强度（提升魔法伤害）
+magic_power:
+  display-name: "§b✦ 魔法强度"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 1000.0
+  type: offensive
+  trigger: on_attack
+  # 魔法强度转换为魔法伤害
+  formula: "damage + {magic_power} * 0.5"
+  description: "提升魔法伤害，每点魔法强度提供0.5魔法伤害"
+
+# 法术穿透（百分比）
+spell_penetration:
+  display-name: "§d⚔ 法术穿透"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: offensive
+  trigger: passive
+  description: "无视目标一定百分比的魔法防御"
+
+# 法力恢复速度
+mana_regen_speed:
+  display-name: "§3✦ 法力恢复"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: utility
+  trigger: passive
+  description: "每秒恢复一定量的法力值"
+
+# 法术冷却缩减
+spell_cooldown:
+  display-name: "§b⌚ 法术急速"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 80.0
+  type: utility
+  trigger: passive
+  description: "减少法术的冷却时间"
+
+# ========== 生命类属性 ==========
+
+# 生命偷取（物理）
+physical_lifesteal:
+  display-name: "§c♥ 生命偷取"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: offensive
+  trigger: on_attack
+  formula: "damage * {physical_lifesteal} / 100"
+  effect-type: heal
+  show-message: false
+  description: "物理攻击时恢复造成伤害的一定百分比生命值"
+
+# 法术吸血
+spell_vamp:
+  display-name: "§5♥ 法术吸血"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: offensive
+  trigger: on_attack
+  formula: "damage * {spell_vamp} / 100"
+  effect-type: heal
+  description: "魔法攻击时恢复造成伤害的一定百分比生命值"
+
+# 生命恢复（每秒）
+health_regen_flat:
+  display-name: "§a♥ 生命恢复"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: utility
+  trigger: passive
+  description: "每秒恢复固定生命值"
+
+# 最大生命值提升（百分比）
+max_health_bonus:
+  display-name: "§c❤ 生命加成"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 500.0
+  type: utility
+  trigger: passive
+  description: "提升最大生命值百分比"
+
+# ========== 特殊效果类 ==========
+
+# 反伤（荆棘）
+thorns_damage:
+  display-name: "§c🔱 反伤"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 200.0
+  type: defensive
+  trigger: on_defend
+  formula: "damage * {thorns_damage} / 100"
+  effect-type: damage
+  target: attacker
+  show-message: true
+  message: "§7⚡ 反伤 §c{value}"
+  description: "受到攻击时反弹伤害给攻击者"
+
+# 真实伤害（无视防御）
+true_damage:
+  display-name: "§c⚡ 真实伤害"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 1000.0
+  type: offensive
+  trigger: on_attack
+  formula: "{true_damage}"
+  effect-type: damage
+  ignore-defense: true
+  description: "造成无视防御的额外伤害"
+
+# 灼烧（持续伤害）
+burn_damage:
+  display-name: "§6🔥 灼烧"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: offensive
+  trigger: on_attack
+  chance: 30.0
+  formula: "{burn_damage} * 3"
+  effect-type: damage
+  show-message: true
+  message: "§6🔥 灼烧效果！"
+  description: "30%概率使目标燃烧，造成持续伤害"
+
+# 冰冻（减速）
+freeze_chance:
+  display-name: "§b❄ 冰冻"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: offensive
+  trigger: on_attack
+  chance: "{freeze_chance}"
+  formula: "0"
+  effect-type: debuff
+  show-message: true
+  message: "§b❄ 冰冻效果！"
+  description: "一定概率冰冻目标，使其减速"
+
+# 狂暴（低血量高伤害）
+berserk_power:
+  display-name: "§6⚔ 狂暴"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 200.0
+  type: offensive
+  trigger: on_attack
+  # 血量越低伤害越高
+  formula: "damage * (1 + {berserk_power} * (100 - {health_percent}) / 10000)"
+  description: "血量越低，造成的伤害越高"
+
+# 格挡值（固定格挡伤害）
+block_value:
+  display-name: "§7◈ 格挡值"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 1000.0
+  type: defensive
+  trigger: on_defend
+  chance: 25.0
+  formula: "max(1, damage - {block_value})"
+  show-message: true
+  message: "§7◈ 格挡！减少 {block_value} 伤害"
+  description: "25%概率格挡攻击，减少固定伤害"
+
+# 闪避
+dodge_chance:
+  display-name: "§f◈ 闪避"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 75.0
+  type: defensive
+  trigger: on_defend
+  chance: "{dodge_chance}"
+  formula: "0"
+  show-message: true
+  message: "§f◈ 闪避成功！"
+  description: "按概率完全闪避攻击"
+
+# 吸血鬼之触（吸血+伤害）
+vampire_touch:
+  display-name: "§4🩸 吸血鬼之触"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: offensive
+  trigger: on_attack
+  formula: "damage * {vampire_touch} / 100"
+  effect-type: heal
+  show-message: true
+  message: "§4🩸 +{value} 生命"
+  description: "攻击时吸取生命值"
+
+# 移动速度提升
+speed_boost:
+  display-name: "§f➤ 迅捷"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 200.0
+  type: utility
+  trigger: passive
+  description: "提升移动速度百分比"
+
+# 经验加成
+exp_multiplier:
+  display-name: "§a★ 经验加成"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 500.0
+  type: utility
+  trigger: passive
+  description: "击杀怪物时获得额外经验"
+
+# 幸运（掉落率提升）
+luck_bonus:
+  display-name: "§e✦ 幸运"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 200.0
+  type: utility
+  trigger: passive
+  description: "提升掉落物品的稀有度和数量"
+
+# ========== 高级组合属性 ==========
+
+# 连击系统
+combo_damage:
+  display-name: "§e⚡ 连击"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: offensive
+  trigger: on_attack
+  # 连续攻击增加伤害（需要额外实现连击计数）
+  formula: "damage * (1 + {combo_damage} * 0.01)"
+  description: "连续攻击时提升伤害"
+
+# 背刺（背后攻击额外伤害）
+backstab_damage:
+  display-name: "§8🗡 背刺"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 200.0
+  type: offensive
+  trigger: on_attack
+  # 从背后攻击造成额外伤害
+  formula: "damage * (1 + {backstab_damage} / 100)"
+  description: "从背后攻击造成额外伤害"
+
+# 击退抗性
+knockback_resistance:
+  display-name: "§7⚓ 击退抗性"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 100.0
+  type: defensive
+  trigger: passive
+  description: "减少被击退的距离"
+
+# 远程伤害加成
+ranged_damage:
+  display-name: "§e🏹 远程伤害"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 500.0
+  type: offensive
+  trigger: on_attack
+  # 距离越远伤害越高
+  formula: "damage + {ranged_damage} * ({distance} / 10)"
+  description: "提升远程武器伤害"
+
+# 近战伤害加成
+melee_damage:
+  display-name: "§c⚔ 近战伤害"
+  default-value: 0.0
+  min-value: 0.0
+  max-value: 500.0
+  type: offensive
+  trigger: on_attack
+  # 近距离攻击伤害提升
+  formula: "{distance} < 3 ? damage + {melee_damage} : damage"
+  description: "提升近战武器伤害"

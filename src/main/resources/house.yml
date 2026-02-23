@@ -1,0 +1,4 @@
+# 导航物品配置
+navigation-item:
+  name: "&a&l导航中 → {house}"   # 支持 {house} = 房屋名  {distance} = 距离
+

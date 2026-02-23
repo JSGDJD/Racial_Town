@@ -1,0 +1,36 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.code-workspace
+
+# 构建产物
+*.jar
+*.class
+*.war
+*.ear
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 备份文件
+*_backup.java
+*_old_*.java
+
+# 日志
+*.log
+
+# 数据库文件
+*.db

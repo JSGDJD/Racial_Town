@@ -1,0 +1,192 @@
+# ===== 家族系统消息配置 =====
+
+# 通用消息
+common:
+  prefix: "&b[家族] &r"
+  no-permission: "&c你没有足够的权限执行此操作！"
+  player-not-found: "&c找不到该玩家！"
+  family-not-found: "&c找不到该家族！"
+  cooldown: "&c你需要等待 &e%time% &c才能再次执行此操作！"
+  requirement-not-met: "&c你不满足执行此操作的条件："
+  success: "&a操作成功！"
+  error: "&c操作失败：%reason%"
+
+# 创建家族消息
+create:
+  success: "&a成功创建家族 &e%family%&a！"
+  already-in-family: "&c你已经加入了一个家族！"
+  cooldown-active: "&c你创建家族的冷却时间还未结束，剩余 &e%time%&c！"
+  requirement:
+    no-house: "&7- 你没有房屋"
+    house-too-small: "&7- 房屋面积不足 &e%required%&7 方块（当前 &e%current%&7）"
+    race-level-low: "&7- 种族等级不足 &e%required%&7 级（当前 &e%current%&7）"
+    honor-low: "&7- 荣誉值不足 &e%required%&7 点（当前 &e%current%&7）"
+    money-low: "&7- 游戏币不足 &e%required%&7（当前 &e%current%&7）"
+    exp-level-low: "&7- 经验等级不足 &e%required%&7 级（当前 &e%current%&7）"
+    items-missing: "&7- 缺少所需物品：%items%"
+
+# 加入家族消息
+join:
+  success: "&a成功加入家族 &e%family%&a！"
+  already-in-family: "&c你已经加入了一个家族！"
+  invitation-not-found: "&c邀请不存在或已过期！"
+  family-full: "&c该家族已经满员！"
+  broadcast: "&e%player% &a加入了家族 &e%family%&a！"
+
+# 邀请消息
+invite:
+  sent: "&a已向 &e%player% &a发送家族邀请！"
+  received: "&e%player% &a邀请你加入家族 &e%family%&a！使用 &e/hr family accept %family% &a接受邀请！"
+  already-invited: "&c该玩家已经收到邀请！"
+  offline: "&c该玩家不在线！"
+  self: "&c你不能邀请自己！"
+
+# 退出家族消息
+leave:
+  success: "&a成功退出家族 &e%family%&a！"
+  leader-cannot-leave: "&c族长不能直接退出家族，请先转让族长或解散家族！"
+  broadcast: "&e%player% &c退出了家族 &e%family%&c！"
+
+# 解散家族消息
+disband:
+  success: "&a成功解散家族 &e%family%&a！"
+  broadcast: "&c家族 &e%family% &c已被解散！"
+
+# 升级家族消息
+upgrade:
+  success: "&a家族 &e%family% &a成功升级到 &e%level% &a级！"
+  broadcast: "&e%family% &a家族成功升级到 &e%level% &a级！所有成员获得属性加成！"
+  max-level: "&c家族已经达到最高等级！"
+  requirement-not-met: "&c家族不满足升级条件："
+  cost:
+    money: "&7- 游戏币：&e%required% &7（当前 &e%current%&7）"
+    honor: "&7- 荣誉值：&e%required% &7（当前 &e%current%&7）"
+    activity: "&7- 活跃值：&e%required% &7（当前 &e%current%&7）"
+    items: "&7- 所需物品：%items%"
+
+# 职位管理消息
+position:
+  changed: "&a成功将 &e%player% &a的职位变更为 &e%position%&a！"
+  broadcast: "&e%player% &a的职位变更为 &e%position%&a！"
+  max-reached: "&c该职位的人数已达上限！"
+  invalid-position: "&c无效的职位！"
+  cannot-change-self: "&c你不能变更自己的职位！"
+
+# 踢出成员消息
+kick:
+  success: "&a成功将 &e%player% &a踢出家族！"
+  broadcast: "&e%player% &c被踢出家族 &e%family%&c！"
+  cannot-kick-leader: "&c你不能踢出族长！"
+  higher-position: "&c你不能踢出职位高于或等于你的成员！"
+
+# 全员传送消息
+tp-all:
+  success: "&a已将所有在线成员传送到你身边！"
+  broadcast: "&e%player% &a将你传送到他身边！"
+  cooldown: "&c传送冷却中，剩余 &e%time%&c！"
+
+# 仓库消息
+warehouse:
+  no-access: "&c你没有权限访问家族仓库！"
+  blacklist-item: "&c该物品不允许存入家族仓库！"
+  full: "&c家族仓库已满！"
+  deposit-success: "&a成功存入 %amount% 个 %item%！"
+  withdraw-success: "&a成功取出 %amount% 个 %item%！"
+
+# Buff消息
+buff:
+  activated: "&a成功激活 &e%buff%&a Buff，持续 &e%duration%&a 秒！"
+  broadcast: "&e%family% &a家族激活了 &e%buff%&a Buff！所有成员获得加成！"
+  cooldown: "&c该Buff冷却中，剩余 &e%time%&c！"
+  requirement-not-met: "&c不满足激活条件："
+  cost:
+    money: "&7- 游戏币：&e%required% &7（当前 &e%current%&7）"
+    honor: "&7- 荣誉值：&e%required% &7（当前 &e%current%&7）"
+    activity: "&7- 活跃值：&e%required% &7（当前 &e%current%&7）"
+    items: "&7- 所需物品：%items%"
+
+# 管理员工具消息
+admin:
+  reload-success: "&a成功重载家族系统配置！"
+  disband-success: "&a成功强制解散家族 &e%family%&a！"
+  setlevel-success: "&a成功将家族 &e%family%&a 的等级设置为 &e%level%&a！"
+
+# GUI消息
+gui:
+  title:
+    main: "&b家族管理"
+    members: "&b家族成员"
+    upgrade: "&b家族升级"
+    warehouse: "&b家族仓库"
+    buffs: "&b家族Buff"
+  item:
+    family-info:
+      name: "&6家族信息"
+      lore:
+        - "&7名称：&e%family%"
+        - "&7等级：&e%level%"
+        - "&7成员：&e%members%/%max%"
+        - "&7活跃值：&e%activity%"
+        - "&7荣誉值：&e%honor%"
+        - "&7"
+        - "&e左键查看成员列表"
+        - "&e右键打开家族仓库"
+    create-family:
+      name: "&a创建家族"
+      lore:
+        - "&7点击创建一个属于你的家族"
+        - "&7"
+        - "&7需要满足以下条件："
+        - "&7- 拥有房屋（面积 ≥ %house-area%）"
+        - "&7- 种族等级 ≥ %race-level%"
+        - "&7- 荣誉值 ≥ %honor%"
+        - "&7- 游戏币 ≥ %money%"
+        - "&7- 经验等级 ≥ %exp-level%"
+        - "&7- 消耗：%items%"
+        - "&7"
+        - "&7冷却时间：%cooldown% 小时"
+    upgrade-family:
+      name: "&b升级家族"
+      lore:
+        - "&7当前等级：&e%current%"
+        - "&7下一级：&e%next%"
+        - "&7"
+        - "&7升级需求："
+        - "&7- 游戏币：&e%money%"
+        - "&7- 荣誉值：&e%honor%"
+        - "&7- 活跃值：&e%activity%"
+        - "&7- 物品：%items%"
+        - "&7"
+        - "&7升级后："
+        - "&7- 成员上限：&e%max-members%"
+        - "&7- 副族长：&e%deputy% &7人"
+        - "&7- 长老：&e%elder% &7人"
+        - "&7- 属性加成："
+        - "&7  * 攻击力：&e%attack%"
+        - "&7  * 生命值：&e%health%"
+        - "&7  * 防御力：&e%defense%"
+        - "&7- 经验倍率："
+        - "&7  * 打怪：&e%monster%x"
+        - "&7  * 挖矿：&e%mining%x"
+        - "&7  * 钓鱼：&e%fishing%x"
+    invite-player:
+      name: "&9邀请玩家"
+      lore:
+        - "&7点击邀请其他玩家加入家族"
+    manage-positions:
+      name: "&c职位管理"
+      lore:
+        - "&7管理家族成员职位"
+        - "&7拖拽玩家头像调整职位"
+    teleport-all:
+      name: "&d全员传送"
+      lore:
+        - "&7将在线成员传送到你身边"
+        - "&7冷却时间：&e%cooldown% &7秒"
+    leave-disband:
+      name: "&c退出家族"
+      lore:
+        - "&7点击退出当前家族"
+        - "&7注意：族长退出将解散家族！"
+        - "&7"
+        - "&e点击确认退出"

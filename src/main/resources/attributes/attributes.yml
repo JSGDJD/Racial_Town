@@ -1,0 +1,288 @@
+# ===== 属性系统配置 =====
+
+# 是否启用属性系统
+enabled: true
+
+# 日志配置
+logging:
+  # 是否启用详细日志
+  enabled: true
+  # 是否在聊天框显示伤害信息
+  show-damage-in-chat: true
+
+# 玩家加入服务器时是否自动刷新属性
+auto-refresh-on-join: true
+
+# 数据库配置
+database:
+  # 存储类型: sqlite 或 mysql
+  type: sqlite
+  
+  # MySQL配置 (仅当type为mysql时生效)
+  mysql:
+    host: localhost
+    port: 3306
+    database: hotelroom
+    username: root
+    password: password
+    # 连接池配置
+    pool-size: 10
+
+# ===== 玩家默认属性 =====
+# 注意：只有 health 和 physical_damage 有默认值
+# 其他属性默认为0，可通过装备、种族、自定义属性系统获得
+default-attributes:
+  # 基础属性（核心）
+  health: 20.0              # 生命值（20=原版血量）
+  physical_damage: 1.0      # 物理伤害（基础攻击力）
+  
+  # 以下属性默认为0，通过装备/种族/自定义系统获得
+  # 攻击属性
+  magic_damage: 0.0         # 魔法伤害
+  attack_speed: 1.0         # 攻击速度（1.0=原版）
+  
+  # 防御属性
+  physical_defense: 0.0     # 物理防御
+  magic_defense: 0.0        # 魔法防御
+  armor: 0.0                # 护甲值
+  
+  # 暴击属性
+  crit_rate: 0.0            # 暴击率 (%)
+  crit_damage: 0.0        # 暴击伤害 (%) - 触发暴击时的伤害倍率
+  
+  # 穿透属性
+  armor_penetration: 0.0    # 护甲穿透
+  magic_penetration: 0.0    # 魔法穿透
+  
+  # 生命恢复
+  health_regen: 0.0         # 生命恢复/秒
+  health_regen_percent: 0.0 # 生命恢复百分比/秒
+  
+  # 魔法属性
+  mana: 0.0                 # 魔法值
+  max_mana: 0.0             # 最大魔法值
+  mana_regen: 0.0           # 魔法恢复/秒
+  mana_regen_percent: 0.0   # 魔法恢复百分比/秒
+  
+  # 移动属性
+  movement_speed: 0.1       # 移动速度（0.1=原版速度）
+  movement_speed_percent: 0.0 # 移动速度百分比加成
+  
+  # 其他属性
+  dodge_rate: 0.0           # 闪避率 (%)
+  block_rate: 0.0           # 格挡率 (%)
+  lifesteal: 0.0            # 生命偷取 (%)
+  cooldown_reduction: 0.0   # 冷却缩减 (%)
+  exp_bonus: 0.0            # 经验加成 (%)
+  drop_rate_bonus: 0.0      # 掉落率加成 (%)
+
+# ===== 属性显示配置 =====
+display:
+  # 属性显示名称 (用于GUI和消息显示)
+  names:
+    health: "§c 生命值"
+    physical_damage: "§6 物理伤害"
+    magic_damage: "§b魔法伤害"
+    attack_speed: "§e 攻击速度"
+    physical_defense: "§7 物理防御"
+    magic_defense: "§d 魔法防御"
+    armor: "§7 护甲值"
+    crit_rate: "§e 暴击率"
+    crit_damage: "§6 暴击伤害"
+    armor_penetration: "§c 护甲穿透"
+    magic_penetration: "§d 魔法穿透"
+    health_regen: "§a 生命恢复"
+    health_regen_percent: "§a 生命恢复%"
+    mana: "§b 魔法值"
+    max_mana: "§b 最大魔法值"
+    mana_regen: "§3 魔法恢复"
+    mana_regen_percent: "§3 魔法恢复%"
+    movement_speed: "§f➤ 移动速度"
+    movement_speed_percent: "§f➤ 移动速度%"
+    dodge_rate: "§f◈ 闪避率"
+    block_rate: "§7◈ 格挡率"
+    lifesteal: "§c 生命偷取"
+    cooldown_reduction: "§b 冷却缩减"
+    exp_bonus: "§a 经验加成"
+    drop_rate_bonus: "§e 掉落率加成"
+
+# ===== 属性计算配置 =====
+calculation:
+  # 护甲减伤公式: damage_reduction = armor / (armor + 100)
+  armor-effectiveness: 100
+  
+  # 暴击伤害计算: final_damage = base_damage * (crit_damage / 100)
+  # 暴击率上限 (%)
+  max-crit-rate: 100.0
+  
+  # 闪避率上限 (%)
+  max-dodge-rate: 75.0
+  
+  # 格挡率上限 (%)
+  max-block-rate: 75.0
+  
+  # 冷却缩减上限 (%)
+  max-cooldown-reduction: 80.0
+
+# ===== 自定义属性系统 =====
+# 支持服务器管理员自定义属性和效果计算
+custom-attributes:
+  # 示例：真实伤害属性
+  true_damage:
+    display-name: "§c⚡ 真实伤害"
+    default-value: 0.0
+    min-value: 0.0
+    max-value: 1000.0
+    # 属性类型：offensive(攻击), defensive(防御), utility(辅助), passive(被动)
+    type: offensive
+    # 效果触发时机：on_attack(攻击时), on_defend(受击时), on_kill(击杀时), passive(持续)
+    trigger: on_attack
+    # 计算公式（支持的变量见下方说明）
+    formula: "damage + {true_damage}"
+    # 是否忽略防御
+    ignore-defense: true
+    # 描述
+    description: "造成无视防御的额外伤害"
+  
+  # 示例：吸血属性（不同于lifesteal，可自定义计算）
+  vampire:
+    display-name: "§4🩸 吸血"
+    default-value: 0.0
+    min-value: 0.0
+    max-value: 100.0
+    type: offensive
+    trigger: on_attack
+    # 吸血公式：伤害的百分比 + 固定值
+    formula: "damage * {vampire} / 100"
+    # 效果类型：heal(治疗), damage(伤害), buff(增益), debuff(减益)
+    effect-type: heal
+    # 是否显示消息
+    show-message: true
+    message: "§c+{value} §4生命"
+    description: "攻击时恢复造成伤害的一定百分比生命值"
+  
+  # 示例：反伤属性
+  thorns:
+    display-name: "§c🔱 反伤"
+    default-value: 0.0
+    min-value: 0.0
+    max-value: 100.0
+    type: defensive
+    trigger: on_defend
+    # 反伤公式：受到伤害的百分比
+    formula: "damage * {thorns} / 100"
+    effect-type: damage
+    # 反伤目标：attacker(攻击者)
+    target: attacker
+    show-message: true
+    message: "§7⚡ 反伤 §c{value}"
+    description: "受到攻击时反弹一定百分比的伤害给攻击者"
+  
+  # 示例：狂暴属性（血量越低伤害越高）
+  berserk:
+    display-name: "§6⚔ 狂暴"
+    default-value: 0.0
+    min-value: 0.0
+    max-value: 100.0
+    type: offensive
+    trigger: on_attack
+    # 复杂公式：根据血量百分比计算伤害加成
+    # health_percent = 当前血量百分比(0-100)
+    formula: "damage * (1 + {berserk} * (100 - {health_percent}) / 10000)"
+    description: "血量越低，造成的伤害越高"
+  
+  # 示例：致命一击（低概率造成目标当前生命值百分比伤害）
+  execute:
+    display-name: "§c💀 斩杀"
+    default-value: 0.0
+    min-value: 0.0
+    max-value: 100.0
+    type: offensive
+    trigger: on_attack
+    # 触发概率（%）
+    chance: "{execute}"
+    formula: "target_health * ({execute} / 100)"
+    effect-type: damage
+    target: victim
+    show-message: true
+    message: "§c💀 斩杀！§4{value}"
+    description: "有概率造成目标当前生命值百分比伤害"
+
+  # ===== 用户定制属性 =====
+  
+  # 1. PVP伤害（对玩家的额外伤害）
+  pvp_damage:
+    display-name: "§c⚔️ PVP伤害"
+    default-value: 0.0
+    min-value: 0.0
+    max-value: 1000.0
+    type: offensive
+    trigger: on_attack
+    formula: "{pvp_damage}"
+    effect-type: damage
+    target: victim
+    description: "对玩家造成额外物理伤害"
+
+  # 2. PVE伤害（对生物的额外伤害）
+  pve_damage:
+    display-name: "§e🐺 PVE伤害"
+    default-value: 0.0
+    min-value: 0.0
+    max-value: 1000.0
+    type: offensive
+    trigger: on_attack
+    formula: "{pve_damage}"
+    effect-type: damage
+    target: victim
+    description: "对生物造成额外物理伤害"
+
+  # 3. 命中几率（抵消目标闪避率）
+  hit_rate:
+    display-name: "§a🎯 命中几率"
+    default-value: 0.0
+    min-value: 0.0
+    max-value: 100.0
+    type: offensive
+    trigger: on_attack
+    formula: "0"
+    description: "增加攻击命中概率，抵消目标闪避率"
+
+  # 4. 削弱伤害（减少受到的伤害）
+  damage_reduction:
+    display-name: "§b🛡️ 削弱伤害"
+    default-value: 0.0
+    min-value: 0.0
+    max-value: 100.0
+    type: defensive
+    trigger: on_defend
+    formula: "-damage * {damage_reduction} / 100"
+    effect-type: damage
+    target: victim
+    description: "减少受到的所有伤害百分比"
+
+# ===== 自定义计算公式说明 =====
+# 可用变量：
+#   {属性名}          - 玩家的属性值（如 {physical_damage}, {vampire}）
+#   {damage}          - 基础伤害值
+#   {final_damage}    - 最终伤害值
+#   {health}          - 当前生命值
+#   {max_health}      - 最大生命值
+#   {health_percent}  - 生命值百分比(0-100)
+#   {target_health}   - 目标当前生命值
+#   {target_max_health} - 目标最大生命值
+#   {target_armor}    - 目标护甲值
+#   {level}           - 玩家等级
+#   {distance}        - 与目标的距离
+#
+# 支持的运算符：
+#   + - * / % (加减乘除取模)
+#   () 括号
+#   max(a,b) min(a,b) - 取最大最小值
+#   sqrt(x) pow(x,y) - 开方和幂运算
+#
+# 公式示例：
+#   "damage + {physical_damage}"                    # 伤害 + 物理伤害
+#   "damage * (1 + {crit_damage} / 100)"           # 暴击伤害计算
+#   "max(0, damage - {armor} * 0.5)"               # 护甲减伤
+#   "{health} * {lifesteal} / 100"                 # 生命偷取
+#   "damage * pow(1.1, {level})"                    # 等级加成

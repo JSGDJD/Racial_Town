@@ -1,0 +1,31 @@
+# MythicMobs 怪物自定义属性配置
+# 格式：
+# mobs:
+#   怪物ID:
+#     属性名1: 属性值
+#     属性名2: 属性值
+
+mobs:
+  SkeletalKnight:
+    health: 5
+    physical_defense: 10
+  # 示例：为僵尸添加自定义属性
+  Zombie:
+    pvp_damage: 2.0
+    pve_damage: 3.0
+    hit_rate: 5.0
+    damage_reduction: 10.0
+  
+  # 示例：为骷髅添加自定义属性
+  Skeleton:
+    pvp_damage: 1.5
+    pve_damage: 2.5
+    hit_rate: 8.0
+    damage_reduction: 5.0
+  
+  # 示例：为末影人添加自定义属性
+  Enderman:
+    pvp_damage: 4.0
+    pve_damage: 3.5
+    hit_rate: 10.0
+    damage_reduction: 15.0

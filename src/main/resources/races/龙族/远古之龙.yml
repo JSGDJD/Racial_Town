@@ -1,0 +1,56 @@
+# ===== 远古龙最终进化子种族 =====
+race-name: "ancient_dragon"
+display-name: "远古之龙"
+description: "龙族中最强大的存在，象征着龙族的极致力量"
+max-level: 100
+evolution:
+  evolution-level: 65
+  targets:
+    - "primeval_dragon"
+    - "dragon_god"
+    - "world_dragon"
+    - "eternal_dragon"
+attributes:
+  base:
+    health: 25.0
+    physical_damage: 14.0
+    magic_damage: 10.0
+    physical_defense: 18.0
+    magic_defense: 14.0
+    crit_rate: 9.0
+    crit_damage: 52.0
+    movement_speed: 0.03
+    attack_speed: 0.16
+  per-level:
+    health: 4.0
+    physical_damage: 1.1
+    magic_damage: 0.9
+  bonus:
+    physical_damage_percent: 55.0
+    ancient_dragon_power_percent: 68.0
+    dragon_god_percent: 62.0
+    all_damage_percent: 40.0
+    dragon_aura_percent: 58.0
+abilities:
+  level-1:
+    - name: "远古之龙之体"
+      description: "远古之龙力量+68%，物理伤害+55%"
+      effect: "ancient_dragon_body"
+      value: 0.68
+  level-10:
+    - name: "毁灭龙息"
+      description: "释放毁灭性的龙息"
+      effect: "devastating_dragon_breath"
+      value: 0.0
+  level-20:
+    - name: "龙族威压"
+      description: "对所有敌人施加龙族威压"
+      effect: "dragon_pressure"
+      value: 0.0
+  level-50:
+    - name: "龙族觉醒"
+      description: "释放龙族的终极觉醒"
+      effect: "dragon_race_awakening"
+      value: 0.0
+voice-channel-color: "#c0392b"
+icon: "DRAGON_EGG"

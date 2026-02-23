@@ -1,0 +1,112 @@
+name: HotelRoom
+version: 1.5
+main: org.HUD.hotelRoom.HotelRoom
+api-version: '1.21'
+softdepend:
+  - CustomMoney
+commands:
+  hrlist:
+    description: 打开房屋列表与导航
+    usage: /hrlist
+  hotelroom:
+    description: HotelRoom 主命令
+    usage: /hotelroom [子命令] [参数...]
+    aliases: [ hr ]
+  createhotel:
+    description: 创建酒店领地
+    usage: /createhotel
+  givehotel:
+    description: 将指定领地赠送给指定玩家
+    usage: /givehotel <领地名称> <玩家名>
+    permission: hotelroom.admin
+  removehotel:
+    description: 撤销指定领地
+    usage: /removehotel <领地名称>
+    permission: hotelroom.admin
+  addhotelplayer:
+    description: 给指定玩家添加某酒店使用权
+    usage: /addhotelplayer <酒店名> <玩家>
+    permission: hotelroom.admin
+  removehotelplayer:
+    description: 移除指定玩家对某酒店的使用权
+    usage: /removehotelplayer <酒店名> <玩家>
+    permission: hotelroom.admin
+  createpublichotel:
+    description: 创建公共酒店领地
+    usage: /createpublichotel <酒店名称>
+    permission: hotelroom.admin
+  createofficialhotel:
+    description: 创建官方酒店领地
+    usage: /createofficialhotel <酒店类型> <酒店名称>
+    permission: hotelroom.admin
+  abandon:
+    description: 放弃拥有的房屋（私有或公共）
+    usage: /abandon [房屋名称]
+  racevoice:
+    description: 打开种族语音聊天界面
+    usage: /racevoice
+    aliases: [rv, voice]
+  raceexp:
+    description: 种族经验管理指令
+    usage: /raceexp <give|set|check|reload> [args]
+    permission: hotelroom.admin
+    aliases: [rexp]
+  attr:
+    description: 属性系统管理指令
+    usage: /attr <check|set|add|reset|reload|item> [args]
+    aliases: [attribute, attributes]
+  racegui:
+    description: 打开种族进化GUI界面
+    usage: /racegui
+    aliases: [raceevolution, raceevolve]
+  changerace:
+    description: 切换种族（会重置等级为0）
+    usage: /changerace <种族名称>
+    aliases: [cr, changeraces]
+  family:
+    description: 家族系统主命令
+    usage: /family [子命令] [参数...]
+    aliases: []
+    permission: hr.family.use
+  debugattr:
+    description: 属性调试命令
+    usage: /debugattr [玩家] [detail]
+    permission: hotelroom.admin
+  testarmor:
+    description: 盔甲防御测试命令
+    usage: /testarmor <start|stop|setup|info>
+    permission: hotelroom.admin
+
+permissions:
+  hotelroom.admin:
+    description: 管理员权限
+    default: op
+  hotelroom.attr.others:
+    description: 查看他人属性
+    default: op
+  hotelroom.race.gui:
+    description: 使用种族进化GUI权限
+    default: true
+  
+  # 家族系统权限
+  hr.family.use:
+    description: 使用家族系统的基本权限
+    default: true
+  hr.family.admin:
+    description: 家族系统管理员权限
+    default: op
+  hr.family.create:
+    description: 创建家族的权限
+    default: true
+  hr.family.upgrade:
+    description: 升级家族的权限
+    default: op
+  hr.family.invite:
+    description: 邀请玩家加入家族的权限
+    default: op
+  hr.family.kick:
+    description: 踢出家族成员的权限
+    default: op
+  hr.family.manage:
+    description: 管理家族的权限
+    default: op

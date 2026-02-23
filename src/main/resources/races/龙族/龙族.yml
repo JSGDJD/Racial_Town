@@ -1,0 +1,73 @@
+# ===== 龙族配置 =====
+
+race-name: "dragon"
+
+display-name: "龙族"
+
+description: "远古的龙族后裔，拥有强大的龙息和龙鳞护甲"
+
+max-level: 100
+
+evolution:
+  evolution-level: 20
+  targets:
+    - "dragon_knight"
+    - "dragon_mage"
+    - "wyrm"
+    - "ancient_dragon"
+
+attributes:
+  base:
+    health: 8.0
+    physical_damage: 4.0
+    magic_damage: 3.0
+    physical_defense: 4.0
+    magic_defense: 3.0
+    crit_rate: 5.0
+    crit_damage: 25.0
+    movement_speed: 0.0
+    attack_speed: 0.05
+  
+  per-level:
+    health: 3.0
+    physical_damage: 0.7
+    magic_damage: 0.5
+    physical_defense: 0.5
+    crit_rate: 0.25
+    crit_damage: 2.0
+  
+  bonus:
+    health_percent: 18.0
+    physical_damage_percent: 18.0
+    fire_damage_percent: 24.0
+    all_resist_percent: 8.0
+    exp_bonus: 12.0
+
+abilities:
+  level-1:
+    - name: "龙鳞护体"
+      description: "所有伤害减免+8%"
+      effect: "dragon_scales"
+      value: 0.08
+  
+  level-10:
+    - name: "龙息喷射"
+      description: "火焰伤害+20%"
+      effect: "dragon_breath"
+      value: 0.20
+  
+  level-20:
+    - name: "龙族威压"
+      description: "附近敌人攻击力-10%"
+      effect: "dragon_aura"
+      value: 0.10
+  
+  level-50:
+    - name: "龙魂觉醒"
+      description: "生命值低于30%时变身成龙形态"
+      effect: "dragon_form"
+      value: 0.0
+
+voice-channel-color: "#c0392b"
+
+icon: "DRAGON_EGG"
